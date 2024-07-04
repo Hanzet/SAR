@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string("descripcion", 250);
             $table->integer("maxTiempo");
             $table->string("estado", 2);
-            $table->timestamps();
         });
     }
 

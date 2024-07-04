@@ -24,23 +24,25 @@ return new class extends Migration
             $table->string("aplicaCredito", 2);
             $table->timestamps();
 
-            $table->foreign("sar_tipos_recursos_id")
-            ->references("id")
-            ->on("sar_tipos_recursos")
-            ->onUpdate('cascade')
-            ->onDelete('restrict');
+            $table->index
+
+            $table->foreign("sar_tipos_recursos_id", "fk_sar_recursos_sar_tipos_recursos_id")
+                ->references("id")
+                ->on("sar_tipos_recursos")
+                ->onUpdate('restrict')
+                ->onDelete('cascade');
 
             $table->foreign("sar_estados_recursos_id")
-            ->references("id")
-            ->on("sar_estados_recursos")
-            ->onUpdate('cascade')
-            ->onDelete('restrict');
+                ->references("id")
+                ->on("sar_estados_recursos")
+                ->onUpdate('restrict')
+                ->onDelete('cascade');
 
             $table->foreign("areas_id")
-            ->references("id")
-            ->on("areas")
-            ->onUpdate('cascade')
-            ->onDelete('restrict');
+                ->references("id")
+                ->on("areas")
+                ->onUpdate('restrict')
+                ->onDelete('cascade');
         });
     }
 

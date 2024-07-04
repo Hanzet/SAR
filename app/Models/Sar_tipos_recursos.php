@@ -12,6 +12,8 @@ class Sar_tipos_recursos extends Model
 
     protected $table = 'sar_tipos_recursos';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id',
         'codigo',

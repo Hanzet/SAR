@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sar_recursos;
 use Illuminate\Http\Request;
 use App\Models\Sar_tiempos_bloquedos;
 use Illuminate\Support\Facades\Validator;
@@ -27,6 +28,16 @@ class SarTiemposBloquedosController extends Controller
                 'message'   => 'Error de validacion de los datos'
             ];
             return response()->json($data, 400);
+        }
+
+        // Verificar si el recurso está bloqueado
+        $recurso = Sar_recursos::find($request->sar_recursos_id);
+
+        if (!$recurso || $recurso->bloqueado) {
+            return response()->json([
+                'status'    => 400,
+                'message'   => 'El recurso está bloqueado y no se puede registrar el tiempo de bloqueo.'
+            ], 400);
         }
 
         $sar = Sar_tiempos_bloquedos::create([
